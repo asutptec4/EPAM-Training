@@ -1,4 +1,4 @@
-package com.epam.shishonok.task1.model.entity;
+package com.epam.musicapp.entity;
 
 /**
  * Enumeration {@code MusicStyle} that defined music styles. Used as value of

@@ -1,8 +1,9 @@
-package com.epam.shishonok.task1.util;
+package com.epam.musicapp.util;
 
 import java.util.Random;
-import com.epam.shishonok.task1.model.entity.MusicStyle;
-import com.epam.shishonok.task1.model.entity.MusicTrack;
+
+import com.epam.musicapp.entity.MusicStyle;
+import com.epam.musicapp.entity.MusicTrack;
 
 /**
  * Class used for randomly generating instances of {@link MusicTrack} class.

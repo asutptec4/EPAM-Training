@@ -1,4 +1,4 @@
-package com.epam.shishonok.task1.model.exception;
+package com.epam.musicapp.exception;
 
 /**
  * This exception is thrown when music disk is corrupted.

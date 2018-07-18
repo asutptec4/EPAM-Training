@@ -1,4 +1,4 @@
-package com.epam.shishonok.task1.model.entity;
+package com.epam.musicapp.entity;
 
 /**
  * The {@code MusicTrack} class described musical composition. It contains 4

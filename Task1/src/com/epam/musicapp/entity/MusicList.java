@@ -1,7 +1,6 @@
-package com.epam.shishonok.task1.model.entity.interfaces;
+package com.epam.musicapp.entity;
 
 import java.util.Comparator;
-import com.epam.shishonok.task1.model.entity.MusicTrack;
 
 /**
  * Interface has method for manipulation with list of {@link MusicTrack}

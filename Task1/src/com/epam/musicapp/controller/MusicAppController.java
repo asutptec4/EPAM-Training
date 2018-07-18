@@ -1,15 +1,15 @@
-package com.epam.shishonok.task1.controller;
+package com.epam.musicapp.controller;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import com.epam.shishonok.task1.model.entity.MusicDisk;
-import com.epam.shishonok.task1.model.exception.InvalidMusicDiskException;
-import com.epam.shishonok.task1.model.exception.MusicDiskStorageException;
-import com.epam.shishonok.task1.model.logic.MusicDiskManager;
-import com.epam.shishonok.task1.model.logic.MusicDiskStorageManager;
-import com.epam.shishonok.task1.util.RandomTrackGenerator;
-import com.epam.shishonok.task1.view.MusicDiskView;
-import com.epam.shishonok.task1.view.View;
+
+import com.epam.musicapp.entity.MusicDisk;
+import com.epam.musicapp.exception.InvalidMusicDiskException;
+import com.epam.musicapp.exception.MusicDiskStorageException;
+import com.epam.musicapp.service.MusicDiskManager;
+import com.epam.musicapp.service.MusicDiskStorageManager;
+import com.epam.musicapp.util.RandomTrackGenerator;
+import com.epam.musicapp.view.MusicDiskView;
 
 /**
  * Main controller used to show solving of task.
@@ -28,7 +28,7 @@ public class MusicAppController {
     private static final String DEST_FOLDER = "output/";
     
     public void start() {
-	View view = new MusicDiskView();
+	MusicDiskView view = new MusicDiskView();
 	LOGGER.info("Create view " + view.getClass());
 	// Create MusicDisk instance with N track
 	MusicDisk disk = new MusicDisk("Cool disk");

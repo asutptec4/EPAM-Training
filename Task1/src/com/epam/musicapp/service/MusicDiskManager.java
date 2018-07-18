@@ -1,13 +1,14 @@
-package com.epam.shishonok.task1.model.logic;
+package com.epam.musicapp.service;
 
 import java.util.Comparator;
-import com.epam.shishonok.task1.model.entity.MusicTrack;
-import com.epam.shishonok.task1.model.entity.interfaces.MusicList;
-import com.epam.shishonok.task1.model.exception.InvalidMusicDiskException;
+
+import com.epam.musicapp.entity.MusicList;
+import com.epam.musicapp.entity.MusicTrack;
+import com.epam.musicapp.exception.InvalidMusicDiskException;
 
 /**
  * Class provide some methods for working with tracks {@link MusicTrack} on
- * disk {@link com.epam.shishonok.task1.model.entity.MusicDisk}.
+ * disk {@link com.epam.musicapp.entity.MusicDisk}.
  * 
  * @version 1 13.07.2018
  * @author Alexander Shishonok

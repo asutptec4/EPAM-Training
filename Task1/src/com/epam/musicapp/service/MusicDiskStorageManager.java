@@ -1,10 +1,11 @@
-package com.epam.shishonok.task1.model.logic;
+package com.epam.musicapp.service;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
-import com.epam.shishonok.task1.model.entity.MusicDisk;
-import com.epam.shishonok.task1.model.exception.MusicDiskStorageException;
+
+import com.epam.musicapp.entity.MusicDisk;
+import com.epam.musicapp.exception.MusicDiskStorageException;
 
 /**
  * Class provide method to save for a disk {@link MusicDisk} in file.

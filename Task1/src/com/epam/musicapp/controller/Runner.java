@@ -1,4 +1,4 @@
-package com.epam.shishonok.task1.controller;
+package com.epam.musicapp.controller;
 
 /**
  * Used to start music app.

@@ -1,6 +1,5 @@
-package com.epam.shishonok.task1.model.entity;
+package com.epam.musicapp.entity;
 
-import com.epam.shishonok.task1.model.entity.interfaces.MusicList;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;

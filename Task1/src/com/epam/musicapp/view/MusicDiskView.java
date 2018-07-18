@@ -1,6 +1,6 @@
-package com.epam.shishonok.task1.view;
+package com.epam.musicapp.view;
 
-import com.epam.shishonok.task1.model.entity.MusicDisk;
+import com.epam.musicapp.entity.MusicDisk;
 
 /**
  * Display {@link MusicDisk} object in a special way through a console.
@@ -8,7 +8,7 @@ import com.epam.shishonok.task1.model.entity.MusicDisk;
  * @version 1 15.07.2018
  * @author Alexander Shishonok
  */
-public class MusicDiskView extends View {
+public class MusicDiskView {
     public static final String SPLITERATOR = "|";
 
     /**
@@ -16,15 +16,12 @@ public class MusicDiskView extends View {
      * 
      * @param msg
      *            object of message
-     * 
-     * @see View#print(Object)
      */
-    @Override
     public void print(Object msg) {
 	if (msg instanceof MusicDisk) {
 	    MusicDisk disk = (MusicDisk) msg;
 	    if (disk.getName() != null) {
-		super.print(disk.getName());
+		System.out.println(disk.getName());
 	    }
 	    for (int i = 0; i < disk.size(); i++) {
 		StringBuilder builder = new StringBuilder();
@@ -33,10 +30,10 @@ public class MusicDiskView extends View {
 			.append(disk.get(i).getAuthor()).append(SPLITERATOR)
 			.append(disk.get(i).getStyle()).append(SPLITERATOR)
 			.append(disk.get(i).getLength());
-		super.print(builder);
+		System.out.println(builder);
 	    }
 	} else {
-	    super.print(msg);
+	    System.out.println(msg);
 	}
     }
 

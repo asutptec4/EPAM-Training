@@ -1,4 +1,4 @@
-package com.epam.shishonok.task1.model.exception;
+package com.epam.musicapp.exception;
 
 /**
  * Root exception class of MusicApp.
