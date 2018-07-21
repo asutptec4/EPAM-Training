@@ -1,5 +1,7 @@
 package com.epam.musicapp.view;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import com.epam.musicapp.entity.MusicDisk;
 
 /**
@@ -9,7 +11,9 @@ import com.epam.musicapp.entity.MusicDisk;
  * @author Alexander Shishonok
  */
 public class MusicDiskView {
+    
     public static final String SPLITERATOR = "|";
+    private static final Logger LOGGER = LogManager.getLogger(MusicDiskView.class);
 
     /**
      * Print {@link MusicDisk} object to a console.
@@ -21,7 +25,7 @@ public class MusicDiskView {
 	if (msg instanceof MusicDisk) {
 	    MusicDisk disk = (MusicDisk) msg;
 	    if (disk.getName() != null) {
-		System.out.println(disk.getName());
+		LOGGER.info(disk.getName());
 	    }
 	    for (int i = 0; i < disk.size(); i++) {
 		StringBuilder builder = new StringBuilder();
@@ -30,10 +34,10 @@ public class MusicDiskView {
 			.append(disk.get(i).getAuthor()).append(SPLITERATOR)
 			.append(disk.get(i).getStyle()).append(SPLITERATOR)
 			.append(disk.get(i).getLength());
-		System.out.println(builder);
+		LOGGER.info(builder);
 	    }
 	} else {
-	    System.out.println(msg);
+	    LOGGER.info(msg);
 	}
     }
 
