@@ -25,5 +25,3 @@ hs_err_pid*
 #Eclipse file
 .classpath
 .project
-/bin/
-/.setting/
