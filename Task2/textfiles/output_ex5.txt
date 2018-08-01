@@ -1,0 +1,77 @@
+	Pattern Design Composite.
+pattern we need to create a structure in a way that the objects in the structure has to be treated the same way, we can apply composite design When. etc understand it with a real life example – A diagram is a structure that consists of Objects such as Circle, Lines, Triangle Lets. drawing we fill the drawing with color (say Red), the same color also gets applied to the Objects in the When. operations drawing is made up of different parts and they all have same Here.
+	objects Pattern consists of following Composite.
+	composition Component – Base component is the interface for all objects in the composition, client program uses base component to work with the objects in the Base. objects can be an interface or an abstract class with some methods common to all the It.
+	composition – Defines the behaviour for the elements in the Leaf. component is the building block for the composition and implements base It. Components doesn’t have references to other It.
+	component – It consists of leaf elements and implements the operations in base Composite.
+scenario I am applying composite design pattern for the drawing Here.
+	Component Pattern Base Composite.
+composites pattern base component defines the common methods for leaf and Composite. color can create a class Shape with a method draw(String fillColor) to draw the shape with given We.
+	//Shape.java
+	package com.journaldev.design.composite;
+	public interface Shape {
+		public void draw(String fillColor);
+	}
+
+	Objects Design Pattern Leaf Composite.
+composite design pattern leaf implements base component and these are the building block for the Composite. etc can create multiple leaf objects such as Triangle, Circle We.
+	
+	//Triangle.java
+	package com.journaldev.design.composite;
+	public class Triangle implements Shape {
+	
+		@Override
+		public void draw(String fillColor) {
+			System.out.println("Drawing Triangle with color "+fillColor);
+		}
+	}
+
+	//Circle.java
+	package com.journaldev.design.composite;
+	public class Circle implements Shape {
+	
+		@Override
+		public void draw(String fillColor) {
+			System.out.println("Drawing Circle with color "+fillColor);
+		}
+	}
+
+	object Composite.
+group composite object contains group of leaf objects and we should provide some helper methods to add or delete leafs from the A. group can also provide a method to remove all the elements from the We.
+	//Drawing.java
+	package com.journaldev.design.composite;
+	import java.util.ArrayList;
+	import java.util.List;
+	public class Drawing implements Shape{
+	
+		//collection of Shapes
+		private List<Shape> shapes = new ArrayList<Shape>();
+		
+		@Override
+		public void draw(String fillColor) {
+			for(Shape sh : shapes)
+			{
+				sh.draw(fillColor);
+			}
+		}
+		
+		//adding shape to drawing
+		public void add(Shape s){
+			this.shapes.add(s);
+		}
+		
+		//removing shape from drawing
+		public void remove(Shape s){
+			shapes.remove(s);
+		}
+		
+		//removing all the shapes
+		public void clear(){
+			System.out.println("Clearing all the shapes from drawing");
+			this.shapes.clear();
+		}
+	}
+
+elements that composite also implements component and behaves similar to leaf except that it can contain group of leaf Notice. program composite pattern implementation is ready and we can test it with a client Our.
+	Points Pattern Important Composite.
+object pattern should be applied only when the group of objects should behave as the single Composite. structure design pattern can be used to create a tree like Composite. java.awt.Swing#add(Component) is a great example of Composite pattern in java and used a lot in Container.

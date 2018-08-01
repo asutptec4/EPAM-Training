@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Properties>
+    	<Property name="filename">textfiles/textparseapp.log</Property>
+  	</Properties>
+  	<Appenders>
+  		<Console name = "consoleLog">
+  			<PatternLayout pattern = "[%-5level] %c{1} - %msg%n" />
+  			<ThresholdFilter level = "info" />
+  		</Console>
+  		<File name = "fileLog" fileName = "${filename}">
+  			<PatternLayout pattern = "[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+  			<Filters>
+  				<ThresholdFilter level = "debug" />
+  				<LevelRangeFilter minLevel = "info" maxLevel = "info" onMatch = "DENY" onMismatch = "NEUTRAL"/>	
+  			</Filters>
+  		</File>
+  	</Appenders>
+  	<Loggers>
+		<Logger name = "com.epam.textparseapp" level ="debug" additivity = "false">
+			<AppenderRef ref = "fileLog" />
+			<AppenderRef ref = "consoleLog"/>
+		</Logger>
+		<Root level = "error">
+			<AppenderRef ref = "consoleLog"/>
+		</Root>
+	</Loggers>
+</Configuration>
