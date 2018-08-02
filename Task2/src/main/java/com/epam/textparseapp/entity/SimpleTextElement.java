@@ -32,9 +32,4 @@ public class SimpleTextElement implements TextElement {
 	return content;
     }
 
-    @Override
-    public boolean add(TextElement element) {
-	return false;
-    }
-
 }

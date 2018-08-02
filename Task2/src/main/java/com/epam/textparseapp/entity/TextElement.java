@@ -15,12 +15,4 @@ public interface TextElement {
      */
     String print();
 
-    /**
-     * Add child text element to current text element.
-     * 
-     * @param element
-     *            {@code TextElement}'s object
-     * @return true if child element was added
-     */
-    boolean add(TextElement element);
 }

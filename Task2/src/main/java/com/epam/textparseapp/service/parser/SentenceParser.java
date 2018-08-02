@@ -25,10 +25,9 @@ public class SentenceParser extends BaseTextParser {
 
     @Override
     public TextElement parse(String content) {
-	TextElement textElement = new CompoundTextElement();
-	Pattern sentencePattern = Pattern
-		.compile(RegExpBundle.SENTENCE.getExpression());
-	Matcher sentenceMatcher = sentencePattern.matcher(content);
+	CompoundTextElement textElement = new CompoundTextElement();
+	Matcher sentenceMatcher = Pattern
+		.compile(RegExpBundle.SENTENCE.getExpression()).matcher(content);
 	while (sentenceMatcher.find()) {
 	    String textblock = sentenceMatcher.group();
 	    textElement.add(parseNext(textblock));

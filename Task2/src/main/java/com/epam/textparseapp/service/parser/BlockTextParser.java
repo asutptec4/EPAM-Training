@@ -25,10 +25,9 @@ public class BlockTextParser extends BaseTextParser {
 
     @Override
     public TextElement parse(String content) {
-	TextElement textElement = new CompoundTextElement();
-	Pattern blockPattern = Pattern
-		.compile(RegExpBundle.BLOCK.getExpression());
-	Matcher blockMatcher = blockPattern.matcher(content);
+	CompoundTextElement textElement = new CompoundTextElement();
+	Matcher blockMatcher = Pattern
+		.compile(RegExpBundle.BLOCK.getExpression()).matcher(content);
 	while (blockMatcher.find()) {
 	    String textblock = blockMatcher.group();
 	    if (Pattern.matches(RegExpBundle.PARAGRAPH.getExpression(),

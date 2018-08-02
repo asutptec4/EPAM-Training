@@ -35,7 +35,13 @@ public class CompoundTextElement implements TextElement {
 	return result.toString();
     }
 
-    @Override
+    /**
+     * Add child text element to current text element.
+     * 
+     * @param element
+     *            {@code TextElement}'s object
+     * @return true if child element was added
+     */
     public boolean add(TextElement element) {
 	return childs.add(element);
     }

@@ -25,10 +25,9 @@ public class WordParser extends BaseTextParser {
 
     @Override
     public TextElement parse(String content) {
-	TextElement textElement = new CompoundTextElement();
-	Pattern wordPattern = Pattern
-		.compile(RegExpBundle.WORD.getExpression());
-	Matcher wordMatcher = wordPattern.matcher(content);
+	CompoundTextElement textElement = new CompoundTextElement();
+	Matcher wordMatcher = Pattern
+		.compile(RegExpBundle.WORD.getExpression()).matcher(content);
 	int end = 0;
 	while (wordMatcher.find()) {
 	    if (wordMatcher.start() > end) {
