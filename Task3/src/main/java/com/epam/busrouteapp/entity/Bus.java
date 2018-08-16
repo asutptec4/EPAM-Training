@@ -1,8 +1,13 @@
 package com.epam.busrouteapp.entity;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.Semaphore;
+import java.util.ArrayDeque;
+import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
+//import java.util.concurrent.locks.Lock;
+//import java.util.concurrent.locks.ReentrantLock;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Class describe bus for route simulation.
@@ -10,70 +15,42 @@ import java.util.concurrent.TimeUnit;
  * @version 1 15.08.2018
  * @author Alexander Shishonok
  */
-public class Bus implements Callable<Bus> {
+public class Bus implements Runnable {
+
+    private static final Logger LOGGER = LogManager.getLogger(Bus.class);
+    private static final int BUS_SPEED = 10;
 
     private int id;
-    private Route route;
-    private BusStop currentStop;
-    private Semaphore places;
-    private boolean isMoving;
+    private BusStop[] route;
+    private int currentStop;
+    private int maxPassengers;
+    private ArrayDeque<Passenger> passengers;
+    private boolean isAscendDirect;
+    // private Lock lock = new ReentrantLock();
 
-    public Bus(int id, int maxPassengers, Route route) {
+    public Bus(int id, int maxPassengers, BusStop[] route) {
 	this.id = id;
+	this.maxPassengers = maxPassengers;
 	this.route = route;
-	currentStop = null;
-	places = new Semaphore(maxPassengers);
-	isMoving = true;
-    }
-
-    public boolean isMoving() {
-	return isMoving;
-    }
-    
-    public void setMoving(boolean isMoving) {
-        this.isMoving = isMoving;
-    }
-
-    public Route getRoute() {
-        return route;
-    }
-    
-    public BusStop getCurrentStop() {
-        return currentStop;
-    }
-
-    public boolean getPlace() throws InterruptedException {
-        return places.tryAcquire(1, TimeUnit.SECONDS);
-    }
-
-    public void leavePlace() {
-	places.release();
+	currentStop = 0;
+	isAscendDirect = true;
+	passengers = new ArrayDeque<Passenger>(maxPassengers);
     }
 
     @Override
-    public Bus call() {
+    public void run() {
 	while (true) {
 	    try {
 		// go to next stop
 		driveToNextStop();
+		TimeUnit.SECONDS.sleep(BUS_SPEED);
 		// try to get place
-		currentStop.getStopPlace(this);
-		// waiting passengers
-		System.out.println(this + " waiting passengers.");
-		TimeUnit.SECONDS.sleep(10);
-		// go from bus stop
-		currentStop.freeStopPlace(this);
+		getBusStopPlace();
 	    } catch (InterruptedException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
+		Thread.currentThread().interrupt();
+		LOGGER.error(this + " out of route!");
 	    }
 	}
-    }
-
-    private void driveToNextStop() throws InterruptedException {
-	currentStop = route.getNextStop();
-	System.out.println(this + " moving to " + currentStop);
-	TimeUnit.SECONDS.sleep(30);
     }
 
     @Override
@@ -81,4 +58,61 @@ public class Bus implements Callable<Bus> {
 	return "Bus [id=" + id + "]";
     }
 
+    private void driveToNextStop() {
+	if (currentStop == 0 && !isAscendDirect) {
+	    isAscendDirect = !isAscendDirect;
+	}
+	if (currentStop == route.length - 1 && isAscendDirect) {
+	    isAscendDirect = !isAscendDirect;
+	}
+	if (currentStop < route.length - 1 && isAscendDirect) {
+	    currentStop++;
+	} else {
+	    currentStop--;
+	}
+	LOGGER.info(this + " moving to " + route[currentStop]);
+
+    }
+
+    private void getBusStopPlace() {
+	try {
+	    route[currentStop].getStopPlace().acquire();
+	    LOGGER.info(
+		    route[currentStop] + " : " + this + " parking at stop.");
+	    LOGGER.info(route[currentStop] + " : " + this + " unload - "
+		    + unloadPassengers());
+	    LOGGER.info(route[currentStop] + " : " + this + " load - "
+		    + loadPassengers());
+	} catch (InterruptedException e) {
+	    e.printStackTrace();
+	    LOGGER.error("Bus can not parking at bus stop.");
+	} finally {
+	    route[currentStop].getStopPlace().release();
+	    LOGGER.info(
+		    route[currentStop] + " : " + this + " go away from stop.");
+	}
+    }
+
+    private int loadPassengers() {
+	int count = 0;
+	while (passengers.size() < maxPassengers
+		&& !route[currentStop].getPassengerOnStop().isEmpty()) {
+	    passengers.add(route[currentStop].getPassengerOnStop().pop());
+	    count++;
+	}
+	return count;
+    }
+
+    private int unloadPassengers() {
+	int count = 0;
+	for (Iterator<Passenger> iterator = passengers.iterator(); iterator
+		.hasNext();) {
+	    Passenger passenger = iterator.next();
+	    if (passenger.getDestination().equals(route[currentStop])) {
+		iterator.remove();
+		count++;
+	    }
+	}
+	return count;
+    }
 }

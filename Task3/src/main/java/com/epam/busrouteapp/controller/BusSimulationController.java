@@ -1,13 +1,14 @@
 package com.epam.busrouteapp.controller;
 
-import java.util.Random;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
-import com.epam.busrouteapp.entity.Bus;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.epam.busrouteapp.entity.BusStop;
-import com.epam.busrouteapp.entity.Passenger;
-import com.epam.busrouteapp.entity.Route;
+import com.epam.busrouteapp.util.ModelGenerator;
 
 /**
  * Class controller for simulation bus moving.
@@ -17,29 +18,35 @@ import com.epam.busrouteapp.entity.Route;
  */
 public class BusSimulationController {
 
+    private static final Logger LOGGER = LogManager
+	    .getLogger(BusSimulationController.class);
     private static final int BUSSTOP_COUNT = 4;
-    private static final int BUS_COUNT = 3;
-    private static final int PASSENGER_COUNT = 40;
+    private static final int BUS_COUNT = 5;
+    private static final int BUS_CAPACITY = 20;
+    private static final int PASSENGER_COUNT_PER_STOPS = 200;
+    private static final int MONITOR_TIME_DELAY = 30; 
 
     public void start() {
-	BusStop[] busStops = new BusStop[BUSSTOP_COUNT];
-	busStops[0] = new BusStop("red", 2);
-	busStops[1] = new BusStop("yellow", 2);
-	busStops[2] = new BusStop("green", 2);
-	busStops[3] = new BusStop("black", 2);
-	Route route = new Route();
-	for (int i = 0; i < busStops.length; i++) {
-	    route.addBusStop(busStops[i]);
-	}
+	LOGGER.debug("Simulation start...");
+	LOGGER.debug("Bus stop count - " + BUSSTOP_COUNT);
+	LOGGER.debug("Bus count - " + BUS_COUNT);
+	BusStop[] route = ModelGenerator.getRoute(BUSSTOP_COUNT);
+	ModelGenerator.addPassengersOnRoute(route, PASSENGER_COUNT_PER_STOPS);
 	ExecutorService busService = Executors.newFixedThreadPool(BUS_COUNT);
 	for (int i = 0; i < BUS_COUNT; i++) {
-	    busService.submit(new Bus(i, 5, route.copy()));
+	    busService.submit(ModelGenerator.getBus(i, BUS_CAPACITY, route));
 	}
-	ExecutorService passengerService = Executors.newCachedThreadPool();
-	for (int i = 0; i < PASSENGER_COUNT; i++) {
-	    int j = new Random().nextInt(BUSSTOP_COUNT);
-	    passengerService.submit(new Passenger(i, busStops[j],
-		    busStops[(j + BUSSTOP_COUNT - 1) % BUSSTOP_COUNT]));
+	while (true) {
+	    for (int i = 0; i < route.length; i++) {
+		LOGGER.info("Number - " + route[i].getPassengerOnStop().size()
+			+ " on " + route[i]);
+	    }
+	    try {
+		TimeUnit.SECONDS.sleep(MONITOR_TIME_DELAY);
+	    } catch (InterruptedException e) {
+		Thread.currentThread().interrupt();
+		LOGGER.error("Simulation is end.");
+	    }
 	}
     }
 

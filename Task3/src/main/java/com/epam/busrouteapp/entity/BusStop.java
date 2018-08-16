@@ -1,6 +1,6 @@
 package com.epam.busrouteapp.entity;
 
-import java.util.ArrayList;
+import java.util.ArrayDeque;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -13,38 +13,30 @@ public class BusStop {
 
     private String name;
     private Semaphore stopPlace;
-    private ArrayList<Bus> busList;
+    private ArrayDeque<Passenger> passengerOnStop;
 
     public BusStop(String name, int placeCount) {
 	this.name = name;
 	stopPlace = new Semaphore(placeCount, true);
-	busList = new ArrayList<Bus>(placeCount);
+	passengerOnStop = new ArrayDeque<Passenger>();
     }
 
     public String getName() {
 	return name;
     }
 
-    public ArrayList<Bus> getBusList() {
-	return busList;
+    public Semaphore getStopPlace() {
+	return stopPlace;
     }
 
-    public void getStopPlace(Bus bus) throws InterruptedException {
-	stopPlace.acquire();
-	bus.setMoving(false);
-	System.out.println(
-		this + " : bus #" + bus + " parking at stop.");
-	busList.add(bus);
+    public ArrayDeque<Passenger> getPassengerOnStop() {
+        return passengerOnStop;
     }
 
-    public void freeStopPlace(Bus bus) {
-	busList.remove(bus);
-	System.out.println(
-		this + " : bus #" + bus + " go away from stop.");
-	bus.setMoving(true);
-	stopPlace.release();
+    public void setPassengerOnStop(ArrayDeque<Passenger> passengerOnStop) {
+        this.passengerOnStop = passengerOnStop;
     }
-        
+
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -74,5 +66,4 @@ public class BusStop {
     public String toString() {
 	return "BusStop [" + (name != null ? "name=" + name : "") + "]";
     }
-
 }
