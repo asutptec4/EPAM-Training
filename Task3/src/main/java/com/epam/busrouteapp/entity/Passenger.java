@@ -4,7 +4,7 @@ package com.epam.busrouteapp.entity;
  * Class describe passenger for route simulation. Contain three field: count, id
  * and destination. Static field use for counting instances of class.
  * 
- * @version 1 15.08.2018
+ * @version 2 16.08.2018
  * @author Alexander Shishonok
  */
 public class Passenger {
@@ -16,10 +16,6 @@ public class Passenger {
     public Passenger(BusStop destination) {
 	this.id = count++;
 	this.destination = destination;
-    }
-
-    public int getId() {
-	return id;
     }
 
     public BusStop getDestination() {

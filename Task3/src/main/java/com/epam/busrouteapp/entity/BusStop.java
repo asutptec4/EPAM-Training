@@ -33,10 +33,6 @@ public class BusStop {
         return passengerOnStop;
     }
 
-    public void setPassengerOnStop(ArrayDeque<Passenger> passengerOnStop) {
-        this.passengerOnStop = passengerOnStop;
-    }
-
     @Override
     public int hashCode() {
 	final int prime = 31;

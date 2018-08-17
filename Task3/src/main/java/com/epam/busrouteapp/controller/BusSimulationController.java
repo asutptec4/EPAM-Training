@@ -1,5 +1,8 @@
 package com.epam.busrouteapp.controller;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -7,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.epam.busrouteapp.entity.Bus;
 import com.epam.busrouteapp.entity.BusStop;
 import com.epam.busrouteapp.util.ModelGenerator;
 
@@ -21,31 +25,32 @@ public class BusSimulationController {
     private static final Logger LOGGER = LogManager
 	    .getLogger(BusSimulationController.class);
     private static final int BUSSTOP_COUNT = 4;
-    private static final int BUS_COUNT = 5;
+    private static final int BUS_COUNT = 7;
     private static final int BUS_CAPACITY = 20;
-    private static final int PASSENGER_COUNT_PER_STOPS = 200;
-    private static final int MONITOR_TIME_DELAY = 30; 
+    private static final int PASSENGER_COUNT_PER_STOPS = 100;
 
     public void start() {
 	LOGGER.debug("Simulation start...");
 	LOGGER.debug("Bus stop count - " + BUSSTOP_COUNT);
 	LOGGER.debug("Bus count - " + BUS_COUNT);
-	BusStop[] route = ModelGenerator.getRoute(BUSSTOP_COUNT);
-	ModelGenerator.addPassengersOnRoute(route, PASSENGER_COUNT_PER_STOPS);
+	Set<BusStop> set = new HashSet<BusStop>();
 	ExecutorService busService = Executors.newFixedThreadPool(BUS_COUNT);
 	for (int i = 0; i < BUS_COUNT; i++) {
-	    busService.submit(ModelGenerator.getBus(i, BUS_CAPACITY, route));
+	    Bus bus = ModelGenerator.getBus(i, BUS_CAPACITY);
+	    set.addAll(Arrays.asList(bus.getRoute().getBusStops()));
+	    busService.execute(bus);
 	}
+	ModelGenerator.addPassengersOnRoute(
+		set.toArray(new BusStop[set.size()]),
+		PASSENGER_COUNT_PER_STOPS);
 	while (true) {
-	    for (int i = 0; i < route.length; i++) {
-		LOGGER.info("Number - " + route[i].getPassengerOnStop().size()
-			+ " on " + route[i]);
-	    }
+	    set.forEach((el) -> LOGGER.info("On " + el.getName() + " bus stop there are "
+		    + el.getPassengerOnStop().size() + " passengers."));
 	    try {
-		TimeUnit.SECONDS.sleep(MONITOR_TIME_DELAY);
+		TimeUnit.SECONDS.sleep(30);
 	    } catch (InterruptedException e) {
 		Thread.currentThread().interrupt();
-		LOGGER.error("Simulation is end.");
+		LOGGER.error("Main thread is down!");
 	    }
 	}
     }
