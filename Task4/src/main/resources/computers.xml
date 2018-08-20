@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="www.xmlapp.epam.com"
+	xsi:schemaLocation="www.xmlapp.epam.com computers.xsd">
+
+	<computerpart critical="yes">
+		<manufacturer>Intel</manufacturer>
+		<modelname>Core i7 3000</modelname>
+		<category>Computer Part</category>
+		<partnumber>S379574434</partnumber>
+		<origin>China</origin>
+		<releasedate>2016-10-31</releasedate>
+		<price currency="USD">140.03</price>
+		<specification>
+			<group>inner</group>
+			<type>CPU</type>
+			<powerconsum>95</powerconsum>
+			<coolingsys>active</coolingsys>
+			<port type="LGA1151">1</port>
+		</specification>
+	</computerpart>
+
+	<device>
+		<manufacturer>Xiaomi</manufacturer>
+		<modelname>Redmi Note 3</modelname>
+		<category>Phone</category>
+		<partnumber>SN379574434</partnumber>
+		<origin>China</origin>
+		<releasedate>2016-02-28</releasedate>
+		<price currency="USD">179</price>
+	</device>
+
+	<computerpart critical="yes">
+		<manufacturer>Samsung</manufacturer>
+		<modelname>DDR4 PC4-19200 8GB</modelname>
+		<category>Computer Part</category>
+		<partnumber>S3532674384</partnumber>
+		<origin>China</origin>
+		<releasedate>2017-05-18</releasedate>
+		<price currency="USD">60</price>
+		<specification>
+			<group>inner</group>
+			<type>RAM</type>
+			<powerconsum>10</powerconsum>
+			<coolingsys>passive</coolingsys>
+		</specification>
+	</computerpart>
+
+	<device>
+		<manufacturer>Canon</manufacturer>
+		<modelname>EOS200D</modelname>
+		<category>Camera</category>
+		<partnumber>SG349574434</partnumber>
+		<origin>Japan</origin>
+		<releasedate>2017-04-02</releasedate>
+		<price currency="USD">999</price>
+	</device>
+
+	<computerpart critical="no">
+		<manufacturer>ASUS</manufacturer>
+		<modelname>GeForce GTX 1050</modelname>
+		<category>Computer Part</category>
+		<partnumber>S54893674384</partnumber>
+		<origin>Taiwan</origin>
+		<releasedate>2018-12-02</releasedate>
+		<price currency="USD">260</price>
+		<specification>
+			<group>extension</group>
+			<type>GPU</type>
+			<powerconsum>150</powerconsum>
+			<coolingsys>active</coolingsys>
+			<port type="DVI">1</port>
+			<port type="HDMI">1</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="no">
+		<manufacturer>Logitech</manufacturer>
+		<modelname>G413</modelname>
+		<category>Computer Part</category>
+		<partnumber>S2374342484</partnumber>
+		<origin>Taiwan</origin>
+		<releasedate>2017-06-30</releasedate>
+		<price currency="USD">8</price>
+		<specification>
+			<group>peripheral</group>
+			<type>mouse</type>
+			<powerconsum>5</powerconsum>
+			<coolingsys>no</coolingsys>
+			<port type="USB">1</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="yes">
+		<manufacturer>ASRock</manufacturer>
+		<modelname>B250M Pro4</modelname>
+		<category>Computer Part</category>
+		<partnumber>S4237354384</partnumber>
+		<origin>USA</origin>
+		<releasedate>2016-11-23</releasedate>
+		<price currency="USD">127</price>
+		<specification>
+			<group>inner</group>
+			<type>motherboard</type>
+			<powerconsum>50</powerconsum>
+			<coolingsys>passive</coolingsys>
+			<port type="Ethernet">1</port>
+			<port type="USB">6</port>
+			<port type="DVI">1</port>
+			<port type="PCI">4</port>
+			<port type="COM">2</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="no">
+		<manufacturer>Seagate</manufacturer>
+		<modelname>Barracuda ST500DA001</modelname>
+		<category>Computer Part</category>
+		<partnumber>S14334673123</partnumber>
+		<origin>Taiwan</origin>
+		<releasedate>2017-06-01</releasedate>
+		<price currency="USD">70</price>
+		<specification>
+			<group>storage</group>
+			<type>HDD</type>
+			<powerconsum>40</powerconsum>
+			<coolingsys>passive</coolingsys>
+			<port type="SATA">1</port>
+		</specification>
+	</computerpart>
+
+	<device>
+		<manufacturer>Samsung</manufacturer>
+		<modelname>Galaxy S9</modelname>
+		<category>Phone</category>
+		<partnumber>S532e3fgf5744</partnumber>
+		<origin>Japan</origin>
+		<releasedate>2018-02-10</releasedate>
+		<price currency="USD">999</price>
+	</device>
+
+	<device>
+		<manufacturer>Xerox</manufacturer>
+		<modelname>WorkCentre 3025BI</modelname>
+		<category>Printer</category>
+		<partnumber>S43e3fgf5744</partnumber>
+		<origin>Taiwan</origin>
+		<releasedate>2017-09-03</releasedate>
+		<price currency="USD">148</price>
+	</device>
+
+	<computerpart critical="no">
+		<manufacturer>A4Tech</manufacturer>
+		<modelname>Bloody B328</modelname>
+		<category>Computer Part</category>
+		<partnumber>S23gsw342484</partnumber>
+		<origin>Taiwan</origin>
+		<releasedate>2018-01-31</releasedate>
+		<price currency="USD">33</price>
+		<specification>
+			<group>peripheral</group>
+			<type>keyboard</type>
+			<powerconsum>5</powerconsum>
+			<coolingsys>no</coolingsys>
+			<port type="USB">1</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="no">
+		<manufacturer>Dell</manufacturer>
+		<modelname>P2418D</modelname>
+		<category>Computer Part</category>
+		<partnumber>MS3fo54384</partnumber>
+		<origin>USA</origin>
+		<releasedate>2017-08-24</releasedate>
+		<price currency="USD">235</price>
+		<specification>
+			<group>media</group>
+			<type>monitor</type>
+			<powerconsum>50</powerconsum>
+			<coolingsys>passive</coolingsys>
+			<port type="DisplayPort">1</port>
+			<port type="USB">3</port>
+			<port type="HDMI">2</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="yes">
+		<manufacturer>AMD</manufacturer>
+		<modelname>Ryzen 5 2600</modelname>
+		<category>Computer Part</category>
+		<partnumber>SDSG43253234</partnumber>
+		<origin>India</origin>
+		<releasedate>2018-03-17</releasedate>
+		<price currency="USD">184</price>
+		<specification>
+			<group>inner</group>
+			<type>CPU</type>
+			<powerconsum>65</powerconsum>
+			<coolingsys>active</coolingsys>
+			<port type="AM4">1</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="no">
+		<manufacturer>SVEN</manufacturer>
+		<modelname>AP-U980MV</modelname>
+		<category>Computer Part</category>
+		<partnumber>S23gsw3763434</partnumber>
+		<origin>Taiwan</origin>
+		<releasedate>2017-11-11</releasedate>
+		<price currency="USD">25</price>
+		<specification>
+			<group>peripheral</group>
+			<type>earphone</type>
+			<powerconsum>10</powerconsum>
+			<coolingsys>no</coolingsys>
+			<port type="USB">1</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="no">
+		<manufacturer>Kingston</manufacturer>
+		<modelname>A400 480GB</modelname>
+		<category>Computer Part</category>
+		<partnumber>S143543123</partnumber>
+		<origin>Taiwan</origin>
+		<releasedate>2016-07-12</releasedate>
+		<price currency="USD">120</price>
+		<specification>
+			<group>storage</group>
+			<type>SSD</type>
+			<powerconsum>40</powerconsum>
+			<coolingsys>passive</coolingsys>
+			<port type="SATA">1</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="yes">
+		<manufacturer>Corsair</manufacturer>
+		<modelname>RM650x</modelname>
+		<category>Computer Part</category>
+		<partnumber>PSG43253234</partnumber>
+		<origin>USA</origin>
+		<releasedate>2016-09-30</releasedate>
+		<price currency="default">108</price>
+		<specification>
+			<group>inner</group>
+			<type>Power Supply</type>
+			<powerconsum>650</powerconsum>
+			<coolingsys>active</coolingsys>
+			<port>5</port>
+		</specification>
+	</computerpart>
+
+	<computerpart critical="yes">
+		<manufacturer>HyperX</manufacturer>
+		<modelname>Fury 8GB DDR4 PC4-19200</modelname>
+		<category>Computer Part</category>
+		<partnumber>S3532355384</partnumber>
+		<origin>China</origin>
+		<releasedate>2017-11-09</releasedate>
+		<price currency="USD">98</price>
+		<specification>
+			<group>inner</group>
+			<type>RAM</type>
+			<powerconsum>15</powerconsum>
+			<coolingsys>passive</coolingsys>
+		</specification>
+	</computerpart>
+
+	<device>
+		<manufacturer>Kingston</manufacturer>
+		<modelname>Canvas Select SDCS/64GB</modelname>
+		<category>Memory Card</category>
+		<partnumber>SDXCfgf5744</partnumber>
+		<origin>Taiwan</origin>
+		<releasedate>2018-01-31</releasedate>
+		<price currency="USD">27</price>
+	</device>
+</devices>
