@@ -1,5 +1,6 @@
 package com.epam.busrouteapp.util;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
@@ -20,7 +21,7 @@ public class BusStopGenerator {
     private static final int MAXPLACESBYSTOPS = 4;
     private static final int MINPLACESBYSTOPS = 2;
 
-    public static BusStop[] getRoute(int stopsCount) {
+    public static ArrayList<BusStop> getRoute(int stopsCount) {
 	if (stopsCount > BUSSTONAME.length) {
 	    stopsCount = BUSSTONAME.length;
 	}
@@ -31,9 +32,7 @@ public class BusStopGenerator {
 		    random.nextInt(MAXPLACESBYSTOPS - MINPLACESBYSTOPS + 1)
 			    + MINPLACESBYSTOPS));
 	}
-	BusStop[] busStops = new BusStop[stopsCount];
-	set.toArray(busStops);
-	return busStops;
+	return new ArrayList<BusStop>(set);
     }
 
 }

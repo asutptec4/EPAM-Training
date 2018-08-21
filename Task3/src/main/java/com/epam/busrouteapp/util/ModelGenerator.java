@@ -1,5 +1,6 @@
 package com.epam.busrouteapp.util;
 
+import java.util.List;
 import java.util.Random;
 
 import com.epam.busrouteapp.entity.Bus;
@@ -13,21 +14,24 @@ import com.epam.busrouteapp.entity.Passenger;
  * @author Alexander Shishonok
  */
 public class ModelGenerator {
+    public static int passengerCount = 0;
 
-    public static Passenger getPassenger(BusStop[] stops) {
-	return new Passenger(stops[new Random().nextInt(stops.length)]);
+    public static Passenger getPassenger(List<BusStop> allStops) {
+	return new Passenger(passengerCount++,
+		allStops.get(new Random().nextInt(allStops.size())));
     }
-    
+
     public static Bus getBus(int id, int maxPassengers) {
 	return new Bus(id, maxPassengers);
     }
-    
-    public static void addPassengersOnRoute(BusStop[] route, int numberPerStop) {
-	for (int i = 0; i < route.length; i++) {
+
+    public static void addPassengersOnRoute(List<BusStop> allStops,
+	    int numberPerStop) {
+	allStops.forEach((busStop) -> {
 	    for (int j = 0; j < numberPerStop; j++) {
-		route[i].getPassengerOnStop()
-			.add(ModelGenerator.getPassenger(route));
+		busStop.getPassengerOnStop()
+			.add(ModelGenerator.getPassenger(allStops));
 	    }
-	}
+	});
     }
 }

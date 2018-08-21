@@ -35,7 +35,7 @@ public class Bus implements Runnable {
 	this.id = id;
 	this.maxPassengers = maxPassengers;
 	this.route = Route.getInstance();
-	currentStop = new Random().nextInt(route.getBusStops().length);
+	currentStop = new Random().nextInt(route.getBusStops().size());
 	isAscendDirect = true;
 	passengers = new ArrayDeque<Passenger>(maxPassengers);
     }
@@ -78,15 +78,16 @@ public class Bus implements Runnable {
 	if (currentStop == 0 && !isAscendDirect) {
 	    isAscendDirect = !isAscendDirect;
 	}
-	if (currentStop == route.getBusStops().length - 1 && isAscendDirect) {
+	if (currentStop == route.getBusStops().size() - 1 && isAscendDirect) {
 	    isAscendDirect = !isAscendDirect;
 	}
-	if (currentStop < route.getBusStops().length - 1 && isAscendDirect) {
+	if (currentStop < route.getBusStops().size() - 1 && isAscendDirect) {
 	    currentStop++;
 	} else {
 	    currentStop--;
 	}
-	LOGGER.info(this + " moving to " + route.getBusStops()[currentStop]);
+	LOGGER.info(
+		this + " moving to " + route.getBusStops().get(currentStop));
     }
 
     /**
@@ -95,16 +96,16 @@ public class Bus implements Runnable {
      */
     private void getBusStopPlace() {
 	try {
-	    route.getBusStops()[currentStop].getStopPlace().acquire();
-	    LOGGER.info(route.getBusStops()[currentStop] + " : " + this
+	    route.getBusStops().get(currentStop).getStopPlace().acquire();
+	    LOGGER.info(route.getBusStops().get(currentStop) + " : " + this
 		    + " parking at stop.");
 	    int unloadCount = unloadPassengers();
-	    LOGGER.info(route.getBusStops()[currentStop] + " : " + this
+	    LOGGER.info(route.getBusStops().get(currentStop) + " : " + this
 		    + " unload - " + unloadCount);
 	    // if count of unsuccessful attempts of unload passenger more than
 	    // stops in route use exchangeRoute
 	    if (unloadCount == 0
-		    && unloadCounter++ >= route.getBusStops().length) {
+		    && unloadCounter++ >= route.getBusStops().size()) {
 		exchangeRoute();
 		unloadCounter = 0;
 	    }
@@ -113,8 +114,8 @@ public class Bus implements Runnable {
 	    e.printStackTrace();
 	    LOGGER.error("Bus can not parking at bus stop.");
 	} finally {
-	    route.getBusStops()[currentStop].getStopPlace().release();
-	    LOGGER.info(route.getBusStops()[currentStop] + " : " + this
+	    route.getBusStops().get(currentStop).getStopPlace().release();
+	    LOGGER.info(route.getBusStops().get(currentStop) + " : " + this
 		    + " go away from stop with " + passengers.size()
 		    + " passengers");
 	}
@@ -142,11 +143,10 @@ public class Bus implements Runnable {
      * @return count passenger in bus.
      */
     private void loadPassengers() {
-	while (passengers.size() < maxPassengers
-		&& !route.getBusStops()[currentStop].getPassengerOnStop()
-			.isEmpty()) {
-	    passengers.add(route.getBusStops()[currentStop].getPassengerOnStop()
-		    .pop());
+	while (passengers.size() < maxPassengers && !route.getBusStops()
+		.get(currentStop).getPassengerOnStop().isEmpty()) {
+	    passengers.add(route.getBusStops().get(currentStop)
+		    .getPassengerOnStop().pop());
 	}
     }
 
@@ -161,7 +161,7 @@ public class Bus implements Runnable {
 		.hasNext();) {
 	    Passenger passenger = iterator.next();
 	    if (passenger.getDestination()
-		    .equals(route.getBusStops()[currentStop])) {
+		    .equals(route.getBusStops().get(currentStop))) {
 		iterator.remove();
 		count++;
 	    }

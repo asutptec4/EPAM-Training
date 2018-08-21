@@ -9,12 +9,11 @@ package com.epam.busrouteapp.entity;
  */
 public class Passenger {
 
-    private static int count = 0;
     private int id;
     private BusStop destination;
 
-    public Passenger(BusStop destination) {
-	this.id = count++;
+    public Passenger(int id, BusStop destination) {
+	this.id = id;
 	this.destination = destination;
     }
 
