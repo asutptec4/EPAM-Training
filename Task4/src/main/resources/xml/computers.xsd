@@ -34,17 +34,25 @@
 				<complexType>
 					<simpleContent>
 						<extension base="mns:prize">
-							<attribute name="currency" type="string" use="optional"
-								default="USD"></attribute>
+							<attribute name="currency" use="optional" default="USD">
+								<simpleType>
+									<restriction base="string">
+										<enumeration value="USD"></enumeration>
+										<enumeration value="BYN"></enumeration>
+										<enumeration value="EUR"></enumeration>
+										<enumeration value="RUB"></enumeration>
+									</restriction>
+								</simpleType>
+							</attribute>
 						</extension>
 					</simpleContent>
 				</complexType>
 			</element>
 		</sequence>
 	</complexType>
-	
+
 	<simpleType name="prize">
-		<restriction base = "decimal">
+		<restriction base="decimal">
 			<minInclusive value="0"></minInclusive>
 		</restriction>
 	</simpleType>
@@ -76,7 +84,7 @@
 			<element name="port" minOccurs="0" maxOccurs="unbounded">
 				<complexType>
 					<simpleContent>
-						<extension base="int">
+						<extension base="unsignedByte">
 							<attribute name="type" type="string" use="optional"></attribute>
 						</extension>
 					</simpleContent>

@@ -27,7 +27,7 @@
 		<partnumber>SN379574434</partnumber>
 		<origin>China</origin>
 		<releasedate>2016-02-28</releasedate>
-		<price currency="USD">179</price>
+		<price currency="RUB">179</price>
 	</device>
 
 	<computerpart critical="yes">
@@ -63,7 +63,7 @@
 		<partnumber>S54893674384</partnumber>
 		<origin>Taiwan</origin>
 		<releasedate>2018-12-02</releasedate>
-		<price currency="USD">260</price>
+		<price currency="BYN">260</price>
 		<specification>
 			<group>extension</group>
 			<type>GPU</type>
@@ -136,7 +136,7 @@
 		<partnumber>S532e3fgf5744</partnumber>
 		<origin>Japan</origin>
 		<releasedate>2018-02-10</releasedate>
-		<price currency="USD">999</price>
+		<price currency="EUR">999</price>
 	</device>
 
 	<device>
@@ -243,7 +243,7 @@
 		<partnumber>PSG43253234</partnumber>
 		<origin>USA</origin>
 		<releasedate>2016-09-30</releasedate>
-		<price currency="default">108</price>
+		<price currency="USD">108</price>
 		<specification>
 			<group>inner</group>
 			<type>Power Supply</type>
