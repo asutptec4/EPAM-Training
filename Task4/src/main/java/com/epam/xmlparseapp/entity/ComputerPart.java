@@ -56,7 +56,7 @@ public class ComputerPart extends Device {
 
     @Override
     public String toString() {
-	return super.toString()
+	return super.toString() + " "
 		+ (critical != null ? "critical=" + critical + ", " : "")
 		+ (specification != null ? "specification=" + specification
 			: "")

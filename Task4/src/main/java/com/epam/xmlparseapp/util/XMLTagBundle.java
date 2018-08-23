@@ -7,7 +7,8 @@ public enum XMLTagBundle {
     CATEGORY("category"), PARTNUMBER("partnumber"), ORIGIN("origin"),
     RELEASEDATE("releasedate"), PRICE("price"), CURRENCY("currency"),
     SPECIFICATION("specification"), GROUP("group"), TYPE("type"),
-    POWERCONSUM("powerconsum"), COOLINGSYS("coolingsys"), PORT("port");
+    POWERCONSUM("powerconsum"), COOLINGSYS("coolingsys"), PORT("port"),
+    USD("USD");
 
     private String tag;
 

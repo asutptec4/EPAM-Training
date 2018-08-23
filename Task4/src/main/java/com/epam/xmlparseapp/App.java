@@ -4,10 +4,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.epam.xmlparseapp.service.XMLValidator;
-import com.epam.xmlparseapp.xmlparser.AbstractBuilder;
-import com.epam.xmlparseapp.xmlparser.DeviceDOMBuilder;
-import com.epam.xmlparseapp.xmlparser.DeviceSAXBuilder;
+import com.epam.xmlparseapp.xmlparser.AbstractParser;
+import com.epam.xmlparseapp.xmlparser.DeviceDomParser;
+import com.epam.xmlparseapp.xmlparser.DeviceSaxParser;
+import com.epam.xmlparseapp.xmlparser.DeviceStaxParser;
 
+// TODO: Delete this class in future
 public class App {
 
     private static final Logger LOGGER = LogManager.getLogger(App.class);
@@ -17,9 +19,10 @@ public class App {
 	String fileNameXSD = "src/main/resources/xml/computers.xsd";
 	LOGGER.info("XML valid? - "
 		+ XMLValidator.validateXMLwithXSD(fileNameXML, fileNameXSD));
-	AbstractBuilder builder;
-//	builder = new DeviceDOMBuilder();
-	builder = new DeviceSAXBuilder();
+	AbstractParser builder;
+//	builder = new DeviceDomParser();
+	builder = new DeviceSaxParser();
+//	builder = new DeviceStaxParser();
 	builder.buildDeviceSet(fileNameXML);
 	builder.getDevices().forEach(LOGGER::info);
     }

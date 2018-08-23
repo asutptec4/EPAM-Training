@@ -22,15 +22,14 @@ import com.epam.xmlparseapp.entity.Price;
 import com.epam.xmlparseapp.entity.Specification;
 import com.epam.xmlparseapp.util.XMLTagBundle;
 
-public class DeviceDOMBuilder extends AbstractBuilder {
+public class DeviceDomParser extends AbstractParser {
 
     private static final Logger LOGGER = LogManager
-	    .getLogger(DeviceDOMBuilder.class);
-    private static final int ZERO_ITEM = 0;
+	    .getLogger(DeviceDomParser.class);
 
     private DocumentBuilder documentBuilder;
 
-    public DeviceDOMBuilder() {
+    public DeviceDomParser() {
 	super();
 	try {
 	    documentBuilder = DocumentBuilderFactory.newInstance()
@@ -91,6 +90,9 @@ public class DeviceDOMBuilder extends AbstractBuilder {
 	price.setCurrency(((Element) deviceElement
 		.getElementsByTagName(XMLTagBundle.PRICE.getTag())
 		.item(ZERO_ITEM)).getAttribute(XMLTagBundle.CURRENCY.getTag()));
+	if (price.getCurrency().equals("")) {
+	    price.setCurrency(XMLTagBundle.USD.getTag());
+	}
 	price.setValue(Float.parseFloat(
 		deviceElement.getElementsByTagName(XMLTagBundle.PRICE.getTag())
 			.item(ZERO_ITEM).getTextContent()));

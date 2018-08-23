@@ -37,7 +37,7 @@
 		<partnumber>S3532674384</partnumber>
 		<origin>China</origin>
 		<releasedate>2017-05-18</releasedate>
-		<price currency="USD">60</price>
+		<price>60</price>
 		<specification>
 			<group>inner</group>
 			<type>RAM</type>

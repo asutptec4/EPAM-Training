@@ -5,11 +5,13 @@ import java.util.Set;
 
 import com.epam.xmlparseapp.entity.Device;
 
-public abstract class AbstractBuilder {
+public abstract class AbstractParser {
+    
+    protected static final int ZERO_ITEM = 0;
     
     protected Set<Device> devices;
 
-    public AbstractBuilder() {
+    public AbstractParser() {
 	devices = new HashSet<Device>();
     }
 
