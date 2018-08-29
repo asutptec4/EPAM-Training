@@ -13,10 +13,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.xml.sax.SAXException;
 
-public class XMLValidator {
+public class XmlValidator {
 
     private static final Logger LOGGER = LogManager
-	    .getLogger(XMLValidator.class);
+	    .getLogger(XmlValidator.class);
 
     public static boolean validateXMLwithXSD(String pathXML, String pathXSD) {
 	try {

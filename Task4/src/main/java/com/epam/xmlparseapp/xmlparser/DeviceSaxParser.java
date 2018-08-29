@@ -14,13 +14,13 @@ public class DeviceSaxParser extends AbstractParser {
 	    .getLogger(DeviceSaxParser.class);
 
     private XMLReader reader;
-    private DeviceSAXHandler handler;
+    private DeviceSaxHandler handler;
     
     public DeviceSaxParser() {
 	super();
 	try {
 	    reader = XMLReaderFactory.createXMLReader();
-	    handler = new DeviceSAXHandler();
+	    handler = new DeviceSaxHandler();
 	    reader.setContentHandler(handler);
 	}catch (SAXException e) {
 	    LOGGER.error("Parser configuration error", e);

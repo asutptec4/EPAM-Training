@@ -20,7 +20,7 @@ import com.epam.xmlparseapp.entity.Device;
 import com.epam.xmlparseapp.entity.Port;
 import com.epam.xmlparseapp.entity.Price;
 import com.epam.xmlparseapp.entity.Specification;
-import com.epam.xmlparseapp.util.XMLTagBundle;
+import com.epam.xmlparseapp.util.XmlTagBundle;
 
 public class DeviceDomParser extends AbstractParser {
 
@@ -48,13 +48,13 @@ public class DeviceDomParser extends AbstractParser {
 	    NodeList list = root.getChildNodes();
 	    for (int i = 0; i < list.getLength(); i++) {
 		if (list.item(i).getNodeName()
-			.equals(XMLTagBundle.DEVICE.getTag())) {
+			.equals(XmlTagBundle.DEVICE.getTag())) {
 		    Element element = (Element) list.item(i);
 		    Device device = new Device();
 		    buildDevice(element, device);
 		    getDevices().add(device);
 		} else if (list.item(i).getNodeName()
-			.equals(XMLTagBundle.COMPUTERPART.getTag())) {
+			.equals(XmlTagBundle.COMPUTERPART.getTag())) {
 		    Element element = (Element) list.item(i);
 		    ComputerPart device = new ComputerPart();
 		    buildComputerPart(element, device);
@@ -69,63 +69,63 @@ public class DeviceDomParser extends AbstractParser {
 
     private void buildDevice(Element deviceElement, Device device) {
 	device.setManufacturer(deviceElement
-		.getElementsByTagName(XMLTagBundle.MANUFACTURER.getTag())
+		.getElementsByTagName(XmlTagBundle.MANUFACTURER.getTag())
 		.item(ZERO_ITEM).getTextContent());
 	device.setModelname(deviceElement
-		.getElementsByTagName(XMLTagBundle.MODELNAME.getTag())
+		.getElementsByTagName(XmlTagBundle.MODELNAME.getTag())
 		.item(ZERO_ITEM).getTextContent());
 	device.setCategory(deviceElement
-		.getElementsByTagName(XMLTagBundle.CATEGORY.getTag())
+		.getElementsByTagName(XmlTagBundle.CATEGORY.getTag())
 		.item(ZERO_ITEM).getTextContent());
 	device.setPartnumber(deviceElement
-		.getElementsByTagName(XMLTagBundle.PARTNUMBER.getTag())
+		.getElementsByTagName(XmlTagBundle.PARTNUMBER.getTag())
 		.item(ZERO_ITEM).getTextContent());
 	device.setOrigin(
-		deviceElement.getElementsByTagName(XMLTagBundle.ORIGIN.getTag())
+		deviceElement.getElementsByTagName(XmlTagBundle.ORIGIN.getTag())
 			.item(ZERO_ITEM).getTextContent());
 	device.setReleasedate(LocalDate.parse(deviceElement
-		.getElementsByTagName(XMLTagBundle.RELEASEDATE.getTag())
+		.getElementsByTagName(XmlTagBundle.RELEASEDATE.getTag())
 		.item(ZERO_ITEM).getTextContent()));
 	Price price = new Price();
 	price.setCurrency(((Element) deviceElement
-		.getElementsByTagName(XMLTagBundle.PRICE.getTag())
-		.item(ZERO_ITEM)).getAttribute(XMLTagBundle.CURRENCY.getTag()));
+		.getElementsByTagName(XmlTagBundle.PRICE.getTag())
+		.item(ZERO_ITEM)).getAttribute(XmlTagBundle.CURRENCY.getTag()));
 	if (price.getCurrency().equals("")) {
-	    price.setCurrency(XMLTagBundle.USD.getTag());
+	    price.setCurrency(XmlTagBundle.USD.getTag());
 	}
 	price.setValue(Float.parseFloat(
-		deviceElement.getElementsByTagName(XMLTagBundle.PRICE.getTag())
+		deviceElement.getElementsByTagName(XmlTagBundle.PRICE.getTag())
 			.item(ZERO_ITEM).getTextContent()));
 	device.setPrice(price);
     }
 
     private void buildComputerPart(Element deviceElement, ComputerPart device) {
 	device.setCritical(
-		deviceElement.getAttribute(XMLTagBundle.CRITICAL.getTag()));
+		deviceElement.getAttribute(XmlTagBundle.CRITICAL.getTag()));
 	buildDevice(deviceElement, device);
 	Element element = (Element) deviceElement
-		.getElementsByTagName(XMLTagBundle.SPECIFICATION.getTag())
+		.getElementsByTagName(XmlTagBundle.SPECIFICATION.getTag())
 		.item(ZERO_ITEM);
 	Specification specification = new Specification();
 	specification.setGroup(
-		element.getElementsByTagName(XMLTagBundle.GROUP.getTag())
+		element.getElementsByTagName(XmlTagBundle.GROUP.getTag())
 			.item(ZERO_ITEM).getTextContent());
 	specification.setType(
-		element.getElementsByTagName(XMLTagBundle.TYPE.getTag())
+		element.getElementsByTagName(XmlTagBundle.TYPE.getTag())
 			.item(ZERO_ITEM).getTextContent());
 	specification.setPowerconsum(Integer.parseInt(
-		element.getElementsByTagName(XMLTagBundle.POWERCONSUM.getTag())
+		element.getElementsByTagName(XmlTagBundle.POWERCONSUM.getTag())
 			.item(ZERO_ITEM).getTextContent()));
 	specification.setCoolingsys(
-		element.getElementsByTagName(XMLTagBundle.COOLINGSYS.getTag())
+		element.getElementsByTagName(XmlTagBundle.COOLINGSYS.getTag())
 			.item(ZERO_ITEM).getTextContent());
 	ArrayList<Port> portList = new ArrayList<Port>();
 	NodeList list = element
-		.getElementsByTagName(XMLTagBundle.PORT.getTag());
+		.getElementsByTagName(XmlTagBundle.PORT.getTag());
 	for (int i = 0; i < list.getLength(); i++) {
 	    element = (Element) list.item(i);
 	    Port port = new Port();
-	    port.setType(element.getAttribute(XMLTagBundle.TYPE.getTag()));
+	    port.setType(element.getAttribute(XmlTagBundle.TYPE.getTag()));
 	    port.setCount(Integer.parseInt(element.getTextContent()));
 	    portList.add(port);
 	}

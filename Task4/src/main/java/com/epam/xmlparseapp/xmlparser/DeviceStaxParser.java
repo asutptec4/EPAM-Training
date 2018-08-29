@@ -19,7 +19,7 @@ import com.epam.xmlparseapp.entity.Device;
 import com.epam.xmlparseapp.entity.Port;
 import com.epam.xmlparseapp.entity.Price;
 import com.epam.xmlparseapp.entity.Specification;
-import com.epam.xmlparseapp.util.XMLTagBundle;
+import com.epam.xmlparseapp.util.XmlTagBundle;
 
 public class DeviceStaxParser extends AbstractParser {
 
@@ -43,11 +43,11 @@ public class DeviceStaxParser extends AbstractParser {
 		int type = reader.next();
 		if (type == XMLStreamReader.START_ELEMENT) {
 		    String name = reader.getLocalName();
-		    if (XMLTagBundle.DEVICE.getTag().equals(name)) {
+		    if (XmlTagBundle.DEVICE.getTag().equals(name)) {
 			Device device = new Device();
 			buildDevice(device, reader);
 			getDevices().add(device);
-		    } else if (XMLTagBundle.COMPUTERPART.getTag()
+		    } else if (XmlTagBundle.COMPUTERPART.getTag()
 			    .equals(name)) {
 			ComputerPart device = new ComputerPart();
 			buildComputerPart(device, reader);
@@ -76,35 +76,35 @@ public class DeviceStaxParser extends AbstractParser {
 	    int type = reader.next();
 	    if (type == XMLStreamReader.START_ELEMENT) {
 		String name = reader.getLocalName();
-		if (XMLTagBundle.MANUFACTURER.getTag().equals(name)) {
+		if (XmlTagBundle.MANUFACTURER.getTag().equals(name)) {
 		    device.setManufacturer(getTextContent(reader));
-		} else if (XMLTagBundle.MODELNAME.getTag().equals(name)) {
+		} else if (XmlTagBundle.MODELNAME.getTag().equals(name)) {
 		    device.setModelname(getTextContent(reader));
-		} else if (XMLTagBundle.CATEGORY.getTag().equals(name)) {
+		} else if (XmlTagBundle.CATEGORY.getTag().equals(name)) {
 		    device.setCategory(getTextContent(reader));
-		} else if (XMLTagBundle.PARTNUMBER.getTag().equals(name)) {
+		} else if (XmlTagBundle.PARTNUMBER.getTag().equals(name)) {
 		    device.setPartnumber(getTextContent(reader));
-		} else if (XMLTagBundle.ORIGIN.getTag().equals(name)) {
+		} else if (XmlTagBundle.ORIGIN.getTag().equals(name)) {
 		    device.setOrigin(getTextContent(reader));
-		} else if (XMLTagBundle.RELEASEDATE.getTag().equals(name)) {
+		} else if (XmlTagBundle.RELEASEDATE.getTag().equals(name)) {
 		    device.setReleasedate(
 			    LocalDate.parse(getTextContent(reader)));
 		}
-		if (XMLTagBundle.PRICE.getTag().equals(name)) {
+		if (XmlTagBundle.PRICE.getTag().equals(name)) {
 		    Price price = new Price();
 		    price.setCurrency(reader.getAttributeValue(ZERO_ITEM));
 		    price.setValue(Float.parseFloat(getTextContent(reader)));
 		    if (price.getCurrency() == null) {
-			price.setCurrency(XMLTagBundle.USD.getTag());
+			price.setCurrency(XmlTagBundle.USD.getTag());
 		    }
 		    device.setPrice(price);
 		}
-		if (XMLTagBundle.SPECIFICATION.getTag().equals(name)) {
+		if (XmlTagBundle.SPECIFICATION.getTag().equals(name)) {
 		    return;
 		}
 	    } else if (type == XMLStreamReader.END_ELEMENT) {
 		String name = reader.getLocalName();
-		if (XMLTagBundle.DEVICE.getTag().equals(name)) {
+		if (XmlTagBundle.DEVICE.getTag().equals(name)) {
 		    return;
 		}
 	    }
@@ -121,16 +121,16 @@ public class DeviceStaxParser extends AbstractParser {
 	    int type = reader.next();
 	    if (type == XMLStreamReader.START_ELEMENT) {
 		String name = reader.getLocalName();
-		if (XMLTagBundle.GROUP.getTag().equals(name)) {
+		if (XmlTagBundle.GROUP.getTag().equals(name)) {
 		    spec.setGroup(getTextContent(reader));
-		} else if (XMLTagBundle.TYPE.getTag().equals(name)) {
+		} else if (XmlTagBundle.TYPE.getTag().equals(name)) {
 		    spec.setType(getTextContent(reader));
-		} else if (XMLTagBundle.POWERCONSUM.getTag().equals(name)) {
+		} else if (XmlTagBundle.POWERCONSUM.getTag().equals(name)) {
 		    spec.setPowerconsum(
 			    Integer.parseInt(getTextContent(reader)));
-		} else if (XMLTagBundle.COOLINGSYS.getTag().equals(name)) {
+		} else if (XmlTagBundle.COOLINGSYS.getTag().equals(name)) {
 		    spec.setCoolingsys(getTextContent(reader));
-		} else if (XMLTagBundle.PORT.getTag().equals(name)) {
+		} else if (XmlTagBundle.PORT.getTag().equals(name)) {
 		    Port port = new Port();
 		    port.setType(reader.getAttributeValue(ZERO_ITEM));
 		    port.setCount(Integer.parseInt(getTextContent(reader)));
@@ -138,7 +138,7 @@ public class DeviceStaxParser extends AbstractParser {
 		}
 	    } else if (type == XMLStreamReader.END_ELEMENT) {
 		String name = reader.getLocalName();
-		if (XMLTagBundle.COMPUTERPART.getTag().equals(name)) {
+		if (XmlTagBundle.COMPUTERPART.getTag().equals(name)) {
 		    device.setSpecification(spec);
 		    return;
 		}

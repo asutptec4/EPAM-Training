@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<devices xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="www.xmlapp.epam.com"
+	xsi:schemaLocation="www.xmlapp.epam.com computers.xsd">
+
+	<device>
+		<manufacturer>Xiaomi</manufacturer>
+		<modelname>Redmi Note 3</modelname>
+		<category>Phone</category>
+		<partnumber>SN379574434</partnumber>
+		<origin>China</origin>
+		<releasedate>2016-02-28</releasedate>
+		<price currency="RUB">179</price>
+	</device>
+</devices>

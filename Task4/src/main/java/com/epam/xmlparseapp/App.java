@@ -3,11 +3,10 @@ package com.epam.xmlparseapp;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.epam.xmlparseapp.service.XMLValidator;
+import com.epam.xmlparseapp.service.ParserFactory;
+import com.epam.xmlparseapp.service.XmlValidator;
 import com.epam.xmlparseapp.xmlparser.AbstractParser;
-import com.epam.xmlparseapp.xmlparser.DeviceDomParser;
-import com.epam.xmlparseapp.xmlparser.DeviceSaxParser;
-import com.epam.xmlparseapp.xmlparser.DeviceStaxParser;
+
 
 // TODO: Delete this class in future
 public class App {
@@ -18,11 +17,9 @@ public class App {
 	String fileNameXML = "src/main/resources/xml/computers.xml";
 	String fileNameXSD = "src/main/resources/xml/computers.xsd";
 	LOGGER.info("XML valid? - "
-		+ XMLValidator.validateXMLwithXSD(fileNameXML, fileNameXSD));
+		+ XmlValidator.validateXMLwithXSD(fileNameXML, fileNameXSD));
 	AbstractParser builder;
-//	builder = new DeviceDomParser();
-	builder = new DeviceSaxParser();
-//	builder = new DeviceStaxParser();
+	builder = ParserFactory.createDeviceParser("StAX");
 	builder.buildDeviceSet(fileNameXML);
 	builder.getDevices().forEach(LOGGER::info);
     }

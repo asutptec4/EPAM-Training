@@ -1,6 +1,6 @@
 package com.epam.xmlparseapp.util;
 
-public enum XMLTagBundle {
+public enum XmlTagBundle {
 
     DEVICES("devices"), DEVICE("device"), COMPUTERPART("computerpart"),
     CRITICAL("critical"), MANUFACTURER("manufacturer"), MODELNAME("modelname"),
@@ -12,7 +12,7 @@ public enum XMLTagBundle {
 
     private String tag;
 
-    private XMLTagBundle(String tag) {
+    private XmlTagBundle(String tag) {
 	this.tag = tag;
     }
 
