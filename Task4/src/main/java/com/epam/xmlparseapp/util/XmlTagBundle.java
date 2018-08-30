@@ -1,5 +1,11 @@
 package com.epam.xmlparseapp.util;
 
+/**
+ * Enumeration-container that have String representation of XML tag.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public enum XmlTagBundle {
 
     DEVICES("devices"), DEVICE("device"), COMPUTERPART("computerpart"),

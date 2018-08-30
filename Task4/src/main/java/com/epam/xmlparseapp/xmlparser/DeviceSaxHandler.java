@@ -16,6 +16,13 @@ import com.epam.xmlparseapp.entity.Price;
 import com.epam.xmlparseapp.entity.Specification;
 import com.epam.xmlparseapp.util.XmlTagBundle;
 
+/**
+ * Handler for SAX parser. Overload three basic element: startElement,
+ * endElement and characters.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class DeviceSaxHandler extends DefaultHandler {
 
     private static final int ZERO_ITEM = 0;

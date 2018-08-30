@@ -3,6 +3,12 @@ package com.epam.xmlparseapp.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The class described specification of computer part.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class Specification {
 
     private String group;

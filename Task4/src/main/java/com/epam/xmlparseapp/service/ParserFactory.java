@@ -5,6 +5,13 @@ import com.epam.xmlparseapp.xmlparser.DeviceDomParser;
 import com.epam.xmlparseapp.xmlparser.DeviceSaxParser;
 import com.epam.xmlparseapp.xmlparser.DeviceStaxParser;
 
+/**
+ * Parser factory contain static method which return instance of needed parser.
+ * Can create SAX, DOM, StAX parser. By default create SAX parser.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class ParserFactory {
     
     private enum ParserType{

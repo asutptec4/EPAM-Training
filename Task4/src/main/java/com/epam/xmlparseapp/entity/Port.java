@@ -1,5 +1,12 @@
 package com.epam.xmlparseapp.entity;
 
+/**
+ * The class described computer port. Has two field: type and count of same
+ * ports.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class Port {
 
     private String type;

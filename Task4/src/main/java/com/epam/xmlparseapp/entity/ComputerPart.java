@@ -1,5 +1,12 @@
 package com.epam.xmlparseapp.entity;
 
+/**
+ * The class described computer parts. Inherits from {@code Device}. It contains
+ * additional parameter {@code Specification} and field {@code critical}.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class ComputerPart extends Device {
 
     private String critical;

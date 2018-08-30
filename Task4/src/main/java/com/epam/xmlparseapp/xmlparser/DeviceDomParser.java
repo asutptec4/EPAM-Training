@@ -22,6 +22,12 @@ import com.epam.xmlparseapp.entity.Price;
 import com.epam.xmlparseapp.entity.Specification;
 import com.epam.xmlparseapp.util.XmlTagBundle;
 
+/**
+ * DOM parser for creating {@code Device} instances.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class DeviceDomParser extends AbstractParser {
 
     private static final Logger LOGGER = LogManager

@@ -1,26 +1,33 @@
 package com.epam.xmlparseapp.entity;
 
+/**
+ * The class described price. Has two field: type of currency and value of
+ * price.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class Price {
-    
+
     private String currency;
     private float value;
-    
+
     public String getCurrency() {
-        return currency;
+	return currency;
     }
-    
+
     public void setCurrency(String currency) {
-        this.currency = currency;
+	this.currency = currency;
     }
-    
+
     public float getValue() {
-        return value;
+	return value;
     }
-    
+
     public void setValue(float value) {
-        this.value = value;
+	this.value = value;
     }
-    
+
     @Override
     public int hashCode() {
 	final int prime = 31;
@@ -30,7 +37,7 @@ public class Price {
 	result = prime * result + Float.floatToIntBits(value);
 	return result;
     }
-    
+
     @Override
     public boolean equals(Object obj) {
 	if (this == obj)
@@ -56,5 +63,5 @@ public class Price {
 		+ (currency != null ? "currency=" + currency + ", " : "")
 		+ "value=" + value;
     }
-    
+
 }

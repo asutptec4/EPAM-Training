@@ -2,6 +2,13 @@ package com.epam.xmlparseapp.entity;
 
 import java.time.LocalDate;
 
+/**
+ * The class described electronic device. Has some field which describe basic
+ * property.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class Device {
 
     private String manufacturer;
@@ -147,5 +154,5 @@ public class Device {
 			: "")
 		+ (price != null ? "price=" + price : "");
     }
-    
+
 }

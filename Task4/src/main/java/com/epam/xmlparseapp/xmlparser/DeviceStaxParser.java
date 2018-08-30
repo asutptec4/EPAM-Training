@@ -21,6 +21,12 @@ import com.epam.xmlparseapp.entity.Price;
 import com.epam.xmlparseapp.entity.Specification;
 import com.epam.xmlparseapp.util.XmlTagBundle;
 
+/**
+ * StAX parser for creating {@code Device} instances.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class DeviceStaxParser extends AbstractParser {
 
     private static final Logger LOGGER = LogManager

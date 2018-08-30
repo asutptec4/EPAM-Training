@@ -8,6 +8,12 @@ import org.xml.sax.SAXException;
 import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.XMLReaderFactory;
 
+/**
+ * SAX parser for creating {@code Device} instances.
+ * 
+ * @version 1 30.08.2018
+ * @author Alexander Shishonok
+ */
 public class DeviceSaxParser extends AbstractParser {
     
     private static final Logger LOGGER = LogManager
