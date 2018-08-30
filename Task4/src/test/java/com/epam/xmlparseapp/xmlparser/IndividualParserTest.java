@@ -1,29 +1,21 @@
 package com.epam.xmlparseapp.xmlparser;
 
 import java.time.LocalDate;
-import java.util.HashSet;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 import com.epam.xmlparseapp.entity.Device;
 import com.epam.xmlparseapp.entity.Price;
 import com.epam.xmlparseapp.service.ParserFactory;
 
-public class DomParserTest extends Assert {
+public class IndividualParserTest extends Assert {
 
     Device device;
     AbstractParser parser;
 
-    @Test
-    public void testDomParser() {
-	String fileNameXML = "src/test/java/xml/test.xml";
-	parser.buildDeviceSet(fileNameXML);
-	assertEquals(new HashSet<>().add(device), parser.devices, "hello");
-    }
-
-    @BeforeMethod
-    public void beforeMethod() {
-	parser = ParserFactory.createDeviceParser("DOM");
+    @BeforeClass
+    public void beforeClass() {
 	device = new Device();
 	device.setManufacturer("Xiaomi");
 	device.setModelname("Redmi Note 3");
@@ -35,6 +27,33 @@ public class DomParserTest extends Assert {
 	price.setCurrency("USD");
 	price.setValue(179);
 	device.setPrice(price);
+    }
+
+    @Parameters({"xmlFilePath"})
+    @Test
+    public void testDomParser(String xmlFilePath) {
+	parser = ParserFactory.createDeviceParser("DOM");
+	parser.buildDeviceSet(xmlFilePath);
+	assertEquals(parser.devices.toArray()[parser.devices.size() - 1],
+		device);
+    }
+    
+    @Parameters({"xmlFilePath"})
+    @Test
+    public void testSaxParser(String xmlFilePath) {
+	parser = ParserFactory.createDeviceParser("SAX");
+	parser.buildDeviceSet(xmlFilePath);
+	assertEquals(parser.devices.toArray()[parser.devices.size() - 1],
+		device);
+    }
+    
+    @Parameters({"xmlFilePath"})
+    @Test
+    public void testStaxParser(String xmlFilePath) {
+	parser = ParserFactory.createDeviceParser("STAX");
+	parser.buildDeviceSet(xmlFilePath);
+	assertEquals(parser.devices.toArray()[parser.devices.size() - 1],
+		device);
     }
 
 }

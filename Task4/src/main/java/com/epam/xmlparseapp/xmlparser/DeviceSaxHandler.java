@@ -57,7 +57,11 @@ public class DeviceSaxHandler extends DefaultHandler {
 	    currentObject().setPrice(price);
 	} else if (XmlTagBundle.PORT.getTag().equals(qName)) {
 	    Port port = new Port();
-	    port.setType(attributes.getValue(ZERO_ITEM));
+	    if (attributes.getValue(ZERO_ITEM) != null) {
+		port.setType(attributes.getValue(ZERO_ITEM));
+	    } else {
+		port.setType("");
+	    }
 	    ((ComputerPart) currentObject()).getSpecification().getPorts()
 		    .add(port);
 	}

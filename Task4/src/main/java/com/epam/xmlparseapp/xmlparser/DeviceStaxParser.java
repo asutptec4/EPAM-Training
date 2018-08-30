@@ -132,7 +132,11 @@ public class DeviceStaxParser extends AbstractParser {
 		    spec.setCoolingsys(getTextContent(reader));
 		} else if (XmlTagBundle.PORT.getTag().equals(name)) {
 		    Port port = new Port();
-		    port.setType(reader.getAttributeValue(ZERO_ITEM));
+		    if (reader.getAttributeValue(ZERO_ITEM) != null) {
+			port.setType(reader.getAttributeValue(ZERO_ITEM));
+		    } else {
+			port.setType("");
+		    }
 		    port.setCount(Integer.parseInt(getTextContent(reader)));
 		    spec.getPorts().add(port);
 		}
