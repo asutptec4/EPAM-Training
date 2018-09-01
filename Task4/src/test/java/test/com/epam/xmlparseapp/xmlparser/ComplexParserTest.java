@@ -1,10 +1,13 @@
-package com.epam.xmlparseapp.xmlparser;
+package test.com.epam.xmlparseapp.xmlparser;
 
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.epam.xmlparseapp.service.ParserFactory;
+import com.epam.xmlparseapp.xmlparser.DeviceDomParser;
+import com.epam.xmlparseapp.xmlparser.DeviceSaxParser;
+import com.epam.xmlparseapp.xmlparser.DeviceStaxParser;
 
 public class ComplexParserTest {
 
@@ -27,7 +30,7 @@ public class ComplexParserTest {
 
     @Test
     public void testParserResultEquality() {
-	Assert.assertEquals(saxParser.devices, domParser.devices);
-	Assert.assertEquals(saxParser.devices, staxParser.devices);
+	Assert.assertEquals(saxParser.getDevices(), domParser.getDevices());
+	Assert.assertEquals(saxParser.getDevices(), staxParser.getDevices());
     }
 }

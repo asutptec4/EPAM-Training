@@ -1,4 +1,4 @@
-package com.epam.xmlparseapp.xmlparser;
+package test.com.epam.xmlparseapp.xmlparser;
 
 import java.time.LocalDate;
 import org.testng.Assert;
@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.epam.xmlparseapp.entity.Device;
 import com.epam.xmlparseapp.entity.Price;
 import com.epam.xmlparseapp.service.ParserFactory;
+import com.epam.xmlparseapp.xmlparser.AbstractParser;
 
 public class IndividualParserTest extends Assert {
 
@@ -29,30 +30,33 @@ public class IndividualParserTest extends Assert {
 	device.setPrice(price);
     }
 
-    @Parameters({"xmlFilePath"})
+    @Parameters({ "xmlFilePath" })
     @Test
     public void testDomParser(String xmlFilePath) {
 	parser = ParserFactory.createDeviceParser("DOM");
 	parser.buildDeviceSet(xmlFilePath);
-	assertEquals(parser.devices.toArray()[parser.devices.size() - 1],
+	assertEquals(
+		parser.getDevices().toArray()[parser.getDevices().size() - 1],
 		device);
     }
-    
-    @Parameters({"xmlFilePath"})
+
+    @Parameters({ "xmlFilePath" })
     @Test
     public void testSaxParser(String xmlFilePath) {
 	parser = ParserFactory.createDeviceParser("SAX");
 	parser.buildDeviceSet(xmlFilePath);
-	assertEquals(parser.devices.toArray()[parser.devices.size() - 1],
+	assertEquals(
+		parser.getDevices().toArray()[parser.getDevices().size() - 1],
 		device);
     }
-    
-    @Parameters({"xmlFilePath"})
+
+    @Parameters({ "xmlFilePath" })
     @Test
     public void testStaxParser(String xmlFilePath) {
 	parser = ParserFactory.createDeviceParser("STAX");
 	parser.buildDeviceSet(xmlFilePath);
-	assertEquals(parser.devices.toArray()[parser.devices.size() - 1],
+	assertEquals(
+		parser.getDevices().toArray()[parser.getDevices().size() - 1],
 		device);
     }
 

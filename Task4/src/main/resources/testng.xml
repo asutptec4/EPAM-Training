@@ -3,17 +3,17 @@
 <suite name="XML Parser App Tests">
 	<test name="Individual Tests">
 		<parameter name="xmlFilePath"
-			value="src/test/java/xml/test.xml"></parameter>
+			value="src/main/resources/xml/test.xml"></parameter>
 		<classes>
-			<class name="com.epam.xmlparseapp.service.XmlValidatorTest" />
+			<class name="test.com.epam.xmlparseapp.service.XmlValidatorTest" />
 			<class
-				name="com.epam.xmlparseapp.xmlparser.IndividualParserTest" />
+				name="test.com.epam.xmlparseapp.xmlparser.IndividualParserTest" />
 		</classes>
 	</test>
 
 	<test name="Complex Tests">
 		<classes>
-		<class name="com.epam.xmlparseapp.xmlparser.ComplexParserTest"></class>
+		<class name="test.com.epam.xmlparseapp.xmlparser.ComplexParserTest"></class>
 		</classes>
 	</test>
 </suite>

@@ -1,7 +1,9 @@
-package com.epam.xmlparseapp.service;
+package test.com.epam.xmlparseapp.service;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
+
+import com.epam.xmlparseapp.service.XmlValidator;
 
 public class XmlValidatorTest {
 
